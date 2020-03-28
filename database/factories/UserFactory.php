@@ -15,7 +15,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\User::class, function (Faker $faker) {
     return [
-        'username' => $faker->username,
+        'username' => $faker->unique()->username,
         'mobile_number' => $faker->e164PhoneNumber,
         'amount_to_bill' => $faker->randomNumber(4)
         

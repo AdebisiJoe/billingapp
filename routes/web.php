@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('/example/job', function () {
+    $users = \App\User::all();
+    \App\Jobs\BillUsers::dispatch($users);
+});
+
+Route::get('processbilling', 'BillingController@processQueue');

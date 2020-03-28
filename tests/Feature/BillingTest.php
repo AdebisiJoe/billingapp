@@ -5,6 +5,8 @@ namespace Tests\Feature;
 use Tests\TestCase;
 use Illuminate\Support\Facades\Bus;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\User;
+use App\Jobs\BillUsers;
 
 class BillingTest extends TestCase
 {
@@ -26,11 +28,18 @@ class BillingTest extends TestCase
 
        $this->withExceptionHandling();
         Bus::fake();
-        $user = factory(User::class)->create();
-        $response = $this->get('/api/billuser');
-        Bus::assertDispatched(BillJob::class, function ($job) use ($user) {
-            return $job->user->id === $user->id;
+        //$user = factory(User::class)->create();
+        factory(\App\User::class, 5)->create()->each(function ($user) {
+            //$this->get('/example/job');
+            Bus::assertDispatched(BillUsers::class, function ($job) use ($user) {
+                return $job->user->id === $user->id;
+            });
         });
+        // $user = factory(User::class)->create();
+        // $this->get('/example/job');      
+        // Bus::assertDispatched(BillUsers::class, function ($job) use ($user) {
+        //     return $job->user->id === $user->id;
+        // });
 
 
     }
