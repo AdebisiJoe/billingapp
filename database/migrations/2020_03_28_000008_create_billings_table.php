@@ -15,6 +15,7 @@ class CreateBillingsTable extends Migration
     {
         Schema::create('billings', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }
