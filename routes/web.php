@@ -23,5 +23,6 @@ Route::get('/test/job', function () {
 
 Route::get('processuserbills', 'BillingController@billUsers');
 
-//using a job with say redis is faster than endpoint above
+//using a job with say redis is faster than endpoint above and gives
+//room for doing others things while the Job runs in the background
 Route::get('processbilling', 'BillingController@processQueue');

@@ -36,8 +36,8 @@ class BillUsers implements ShouldQueue
          //Log::info("Billed user : ".$this->user->username);
 
       
-            foreach ($users as $user) {
-                
+            foreach ($this->users as $user) {
+
             //call api
             $this->ApiMock();             
             Log::info("Billed user : ".$user->username);
