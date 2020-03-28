@@ -9,6 +9,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Log;
 use App\User;
+use App\Billing;
 
 class BillUsers implements ShouldQueue
 {
@@ -36,9 +37,21 @@ class BillUsers implements ShouldQueue
 
       
             foreach ($users as $user) {
-             
+                
+            //call api
+            $this->ApiMock();             
             Log::info("Billed user : ".$user->username);
+            $billing = new Billing;
+
+            $billing->user_id = $user->id;
+    
+            $billing->save();
+            
             }
          
+    }
+
+    public function ApiMock(){
+        sleep(1.6);
     }
 }

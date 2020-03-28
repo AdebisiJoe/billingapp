@@ -30,13 +30,13 @@ class BillingTest extends TestCase
         Bus::fake();
         //$user = factory(User::class)->create();
         factory(\App\User::class, 5)->create()->each(function ($user) {
-            //$this->get('/example/job');
+            //$this->get('/test/job');
             Bus::assertDispatched(BillUsers::class, function ($job) use ($user) {
                 return $job->user->id === $user->id;
             });
         });
         // $user = factory(User::class)->create();
-        // $this->get('/example/job');      
+        // $this->get('/test/job');      
         // Bus::assertDispatched(BillUsers::class, function ($job) use ($user) {
         //     return $job->user->id === $user->id;
         // });

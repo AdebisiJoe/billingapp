@@ -16,9 +16,12 @@ Route::get('/', function () {
 });
 
 
-Route::get('/example/job', function () {
+Route::get('/test/job', function () {
     $users = \App\User::all();
     \App\Jobs\BillUsers::dispatch($users);
 });
 
+Route::get('processuserbills', 'BillingController@billUsers');
+
+//using a job with say redis is faster than endpoint above
 Route::get('processbilling', 'BillingController@processQueue');
