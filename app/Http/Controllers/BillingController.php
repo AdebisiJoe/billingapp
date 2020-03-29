@@ -27,6 +27,8 @@ class BillingController extends Controller
                 //call api
                 $this->ApiMock();
                 Log::info("Billed user : ".$user->username);
+                echo "Billed user : ".$user->username;
+                echo "<br/>";
                 $billing = new Billing;
     
                 $billing->user_id = $user->id;
